@@ -1,3 +1,22 @@
+
+const getHeadingElement = function(article) {
+
+  if (article.querySelector("h1") !== null)
+  {
+    return article.querySelector("h1")
+  }
+
+  if (article.querySelector("h2") !== null)
+  {
+    return article.querySelector("h2")
+  }
+
+  if (article.querySelector("h3") !== null)
+  {
+    return article.querySelector("h3")
+  }
+};
+
 const article = document.querySelector("article");
 
 // `document.querySelector` may return null if the selector doesn't match anything.
@@ -14,15 +33,8 @@ if (article) {
   badge.textContent = `⏱️ ${readingTime} min read`;
 
   // Support for API reference docs
-  let heading = article.querySelector("h1");
-  if (heading == null)
-  {
-    heading = article.querySelector("h2");
-  }
-  if (heading == null)
-  {
-    heading = article.querySelector("h3");
-  }
+  let heading = getHeadingElement(article)
+
   // Support for article docs with date
   const date = article.querySelector("time")?.parentNode;
 
